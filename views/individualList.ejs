@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <title><%= student.name%></title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+        <tr>
+        
+            <th><%= student.name %></th>
+            <th>Status </th>
+        
+        </tr>
+        <% for( let index = 1; index < 30; index++ ) { %>
+            <tr>
+                     
+                <th><%= `${index}-${data.att_status}-2022` %> </th>
+                <% res=(index<10) ? student[`2022-${data.att_status}-0${index}`]: student[`2022-${data.att_status}-${index}`] %> 
+                <% console.log(res) %> 
+                <th><%= res %> </th>
+
+            </tr>
+        <% } %>
+        
+    </table>
+    
+    <a href="/attendance ">Home</a>
+  </body>
+</html>
