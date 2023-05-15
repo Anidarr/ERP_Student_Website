@@ -1,5 +1,6 @@
 // noinspection JSVoidFunctionReturnValueUsed
 
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -13,26 +14,16 @@ const attendanceRoute = require("./router/attendanceRoute");
 const loginRoute = require("./router/loginRoute");
 const catalogueRoute = require("./router/catalogueRoute");
 const studentRoute = require('./router/studentRoute')
-const dotenv = require('dotenv');
 
-dotenv.config();
 
-const PORT = process.env.PORT || 5500
+
+const PORT =process.env.port ||3000;
 
 // mongodb://localhost:27017/${collectionName}
 // mongodb+srv://abbas:ocNCILxvih4HZVFY@cluster0.idn7x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-mongoose
-  .connect("mongodb+srv://Anidarr:Aniket123@cluster1.zmorlas.mongodb.net/studentDB?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-  })
-  .then(() => {
-    console.log("Connection open");
-  })
-  .catch((err) => {
-    console.log("Oh no error");
-    console.log(err);
-  });
+mongoose.connect(process.env.MONGO_URI);
+
 
 app.use("/public", express.static('./public/'));
 app.set("views engine", "ejs");
@@ -59,7 +50,6 @@ app.get('/',(req,res)=>{
 
 
 
-app.listen(PORT, () => {  console.log("Listening on port ");
+app.listen(process.env.port||3000, function () {
+  console.log("Server started on port 3000.");
 });
-
-//
